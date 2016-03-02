@@ -6,6 +6,7 @@ import com.beans.RegistrationBean;
  * Created by Nikita on 29.02.2016.
  */
 public class User {
+    private int idUser;
     private String firstName;
     private String lastName;
     private String login;
@@ -32,6 +33,8 @@ public class User {
         this.firstName = firstName;
     }
 
+    public void setIdUser(int idUser){this.idUser = idUser;}
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -49,6 +52,9 @@ public class User {
         return firstName;
     }
 
+    public int getIdUser (){
+        return idUser;
+    }
     public String getLastName() {
         return lastName;
     }

@@ -5,7 +5,7 @@ import com.DAO.TransactionManager;
 /**
  * Created by Nikita on 01.03.2016.
  */
-public class Service {
+public abstract class Service {
     TransactionManager transactionManager;
 
     public Service(){

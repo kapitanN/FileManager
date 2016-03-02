@@ -21,6 +21,38 @@ public class UserServiceCore extends Service implements UserService {
     }
 
     @Override
+    public User getUserByLogin(final String login){
+        return (User)transactionManager.doInTransaction(new Transaction() {
+            @Override
+            public Object action() {
+                User result = null;
+                try {
+                    result = userDAO.getUserByLogin(login);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+        });
+    }
+
+    @Override
+    public String getPath(final int id){
+        return (String) transactionManager.doInTransaction(new Transaction() {
+            @Override
+            public Object action() {
+                String result = null;
+                try {
+                    result = userDAO.getPath(id);
+                } catch (SQLException e) {
+                    LOG.error(e);
+                }
+                return result;
+            }
+        });
+    }
+
+    @Override
     public User addUsers(final User user) {
         return (User)transactionManager.doInTransaction(new Transaction() {
             @Override
@@ -29,7 +61,7 @@ public class UserServiceCore extends Service implements UserService {
                     userDAO.addUser(user);
                     LOG.info("User added");
                 } catch (SQLException e) {
-                    LOG.error("User no added");
+                    LOG.error("User no added" + e);
                 }
                 return null;
             }

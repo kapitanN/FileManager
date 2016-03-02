@@ -16,13 +16,9 @@ public class TransactionManager {
         Connection connection = ConnectionHolder.getConnection();
         Object result = null;
         try{
-            LOG.info("start of transaction...");
             connection.setAutoCommit(false);
-            LOG.info("result");
             result = transaction.action();
-            LOG.info("connection.commit"+result);
             connection.commit();
-            LOG.info("end of transaction...");
         } catch (SQLException e) {
             LOG.info("Can`t create transaction" + e);
             try {

@@ -8,4 +8,6 @@ import com.DAO.User;
 public interface UserService {
     User addUsers(User user);
     void deleteUser(String login);
+    User getUserByLogin(String login);
+    String getPath(int id);
 }
