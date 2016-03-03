@@ -14,6 +14,10 @@
           <option name="url" value="https://github.com/kapitanN/Insart.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/kapitanN/FileManager.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="D:\Study\Insart" />
