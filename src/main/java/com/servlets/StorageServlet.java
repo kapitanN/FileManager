@@ -24,10 +24,11 @@ public class StorageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String userFolder = (String) session.getAttribute("userPath"); // d
-        String clientPath = null;//request.getParameter("path"); // 666
+        String clientPath = request.getParameter("path"); // 666
         Storage s = new Storage(userFolder + File.separator + clientPath);
+        Storage forFiles = new Storage(userFolder);
         String source = "D:\\Study\\Test";
-        s.setFiles(source);
+        forFiles.setFiles(source);
         List<FileBean> lst = s.getFileBean();
         session.setAttribute("lst", lst);
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);

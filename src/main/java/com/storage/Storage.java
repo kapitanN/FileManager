@@ -50,7 +50,8 @@ public class Storage {
 	}
 	public void setFiles(String sourcePath) {
 		Path pathSource = Paths.get(sourcePath);
-		Path pathDestination = Paths.get(ROOT + path);
+		String dirPath =  "\\" + String.valueOf(pathSource.getFileName());
+		Path pathDestination = Paths.get(ROOT + path + dirPath);
 		try {
 			Files.walkFileTree(pathSource, new MyFileCopyVisitor(pathSource,    pathDestination));
 			System.out.println("Files copied successfully!");
