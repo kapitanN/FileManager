@@ -4,6 +4,10 @@ import com.beans.FileBean;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +48,18 @@ public class Storage {
 			newDirectory.mkdirs();
 		}
 	}
-	public void setFiles(String path) {
+	public void setFiles(String sourcePath) {
+		Path pathSource = Paths.get(sourcePath);
+		Path pathDestination = Paths.get(ROOT + path);
+		try {
+			Files.walkFileTree(pathSource, new MyFileCopyVisitor(pathSource,    pathDestination));
+			System.out.println("Files copied successfully!");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
+
+
 
 }

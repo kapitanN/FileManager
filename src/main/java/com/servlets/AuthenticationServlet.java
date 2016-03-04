@@ -8,7 +8,6 @@ import com.beans.FileBean;
 import com.service.UserService;
 import com.service.UserServiceCore;
 import com.storage.Storage;
-import com.storage.Tree;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -32,8 +31,6 @@ public class AuthenticationServlet extends HttpServlet {
 		LOG.info("doPost authentication");
 		HttpSession session = request.getSession();
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
-		Tree tree = new Tree();
-		tree.iterateTree();
 		AuthenticationBean login = fieldsAddition(request);
 		UserServiceCore userService = new UserServiceCore();
 		User user = userService.getUserByLogin(login.getLogin());

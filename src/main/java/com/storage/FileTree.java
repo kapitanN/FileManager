@@ -8,19 +8,20 @@ import java.util.List;
  */
 public class FileTree {
     private File directory;
-    private List<FileTree> files;
+    private List<FileTree> subdirectory;
 
-    public FileTree(File directory) {
+    public FileTree(File directory)
+    {
         this.directory = directory;
     }
 
-    public List<FileTree> getFiles() {
+    public List<FileTree> getSubdirectory() {
 
-        return files;
+        return subdirectory;
     }
 
     public void setFiles(List<FileTree> files) {
-        this.files = files;
+        this.subdirectory = files;
     }
 
     public File getDirectory() {
@@ -28,7 +29,7 @@ public class FileTree {
         return directory;
     }
 
-    public void setDirectory(File directory) {
+    public void setSubdirectory(File directory) {
         this.directory = directory;
     }
 }
