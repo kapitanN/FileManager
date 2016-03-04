@@ -21,8 +21,23 @@ public class UserDAO {
     private static final String ADD_USER = "INSERT INTO logins (firstname, lastname, login, password) VALUES (?,?,?,?)";
     private static final String DELETE_USER = "DELETE FROM logins WHERE login=?";
     private static final String GET_USER_BY_LOGIN = "SELECT * FROM logins WHERE logins.login = ?";
+    private static final String SET_PATH = "INSERT INTO filepath (id_user, foldername) VALUES (?,?)";
     private static final String GET_PATH = "SELECT foldername FROM filepath WHERE filepath.id_user = ?";
 
+
+    public void setPath(int id, String folderPath ) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            statement = ConnectionHolder.getConnection().prepareStatement(SET_PATH);
+            statement.setInt(1,id);
+            statement.setString(2,folderPath);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            statement.close();
+        }
+    }
     public User getUserByLogin(String login) throws SQLException {
         PreparedStatement statement = null;
         User user = null;
@@ -58,6 +73,7 @@ public class UserDAO {
             LOG.error(e);
         }finally {
             statement.close();
+            resultSet.close();
         }
         return path;
     }

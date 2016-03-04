@@ -10,4 +10,5 @@ public interface UserService {
     void deleteUser(String login);
     User getUserByLogin(String login);
     String getPath(int id);
+    void setPath(String login, String folderName);
 }

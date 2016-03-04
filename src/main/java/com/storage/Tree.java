@@ -3,11 +3,11 @@ package com.storage;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.EnumSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nikita on 03.03.2016.
@@ -18,11 +18,10 @@ public class Tree {
     public void iterateTree() {
         Path startingDir = Paths.get("D:\\Filestorage");
         MyFileVisitor pf = new MyFileVisitor();
-        EnumSet<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
-        int maxDepth = 2;
-
+        List<Path> pathList = new ArrayList<>();
         try {
-            Files.walkFileTree(startingDir, options, maxDepth, pf);
+            pathList.add(Files.walkFileTree(startingDir, pf));
+            System.out.format(String.valueOf(pathList));
         } catch (IOException e) {
             LOG.error(e);
         }

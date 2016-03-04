@@ -27,19 +27,24 @@ public class Storage {
 		return result;
 	}
 	public List<File> getFiles(){
-			List<File> files = new ArrayList<>();
-			File file = new File(ROOT + path);
-			if(file.exists()){
-				File[] file1 = file.listFiles();
-				for (int i = 0; i < file1.length; i++) {
-					files.add(file1[i]);
-				}
+		List<File> files = new ArrayList<>();
+		File file = new File(ROOT + path);
+		if(file.exists()){
+			File[] file1 = file.listFiles();
+			for (int i = 0; i < file1.length; i++) {
+				files.add(file1[i]);
 			}
+		}
 		return files;
 	}
 
+	public void createRootDirectory(){
+		File newDirectory = new File(ROOT + path);
+		if (!newDirectory.exists()){
+			newDirectory.mkdirs();
+		}
+	}
 	public void setFiles(String path) {
-
 
 	}
 

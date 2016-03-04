@@ -20,17 +20,36 @@ public class UserServiceCore extends Service implements UserService {
         userDAO = new UserDAO();
     }
 
+
+    @Override
+    public void setPath(final String login, final String folderName){
+        transactionManager.doInTransaction(new Transaction() {
+            @Override
+            public Object action() {
+                int id = getUserByLogin(login).getIdUser();
+                try {
+                    userDAO.setPath(id, folderName);
+                } catch (SQLException e) {
+                    LOG.error(e);
+                }
+                return null;
+            }
+        });
+    }
+
     @Override
     public User getUserByLogin(final String login){
         return (User)transactionManager.doInTransaction(new Transaction() {
             @Override
             public Object action() {
                 User result = null;
+
                 try {
                     result = userDAO.getUserByLogin(login);
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOG.error(e);
                 }
+
                 return result;
             }
         });

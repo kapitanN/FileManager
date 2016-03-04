@@ -28,19 +28,11 @@ class MyFileVisitor extends SimpleFileVisitor<Path> {
         return CONTINUE;
     }
 
-    //Выводим информацию о посещенном каталоге
     @Override
-/* Перечисление FileVisitResult имеет следующие варианты
-CONTINUE продолжить проход.
-SKIP_SIBLINGS продолжить проход без осмотра дочерних папок.
-SKIP_SUBTREE продолжить без просмотра объектов данной папки.
-TERMINATE заверщить.
-*/
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
         System.out.format("Directory: %s%n", dir);
         return CONTINUE;
     }
-    //в случае ошибки доступа к файлу выбрасывается исключение IOException
     @Override
     public FileVisitResult visitFileFailed(Path file, IOException exc) {
         System.err.println(exc);

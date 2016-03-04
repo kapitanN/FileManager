@@ -43,6 +43,7 @@ public class AuthenticationServlet extends HttpServlet {
 		if(result){
 			session.setAttribute("user", user);
 			String path = userService.getPath(user.getIdUser());
+			session.setAttribute("userPath", path);
 			Storage s = new Storage(path) ;
 			List<FileBean> lst = s.getFileBean();
 			session.setAttribute("lst",lst);

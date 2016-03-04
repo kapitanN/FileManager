@@ -6,6 +6,8 @@ import com.DAO.User;
 import com.beans.RegistrationBean;
 import com.service.UserService;
 import com.service.UserServiceCore;
+import com.storage.Storage;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -19,13 +21,13 @@ import java.io.IOException;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet{
-	
+
 	private static final long serialVersionUID = 1L;
 	private static final String FIRST_NAME = "firstName";
 	private static final String LAST_NAME = "lastName";
 	private static final String LOGIN = "login";
 	private static final String PASSWORD = "password";
-	
+
 	private static final Logger LOG = Logger.getLogger(RegistrationServlet.class);
 
 	@Override
@@ -33,14 +35,19 @@ public class RegistrationServlet extends HttpServlet{
 		LOG.info("doPost registration");
 		HttpSession session = request.getSession();
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
-		RegistrationBean user = fieldsAddition(request);
+		RegistrationBean registrationUser = fieldsAddition(request);
 		UserService userService = new UserServiceCore();
-		userService.addUsers(new User(user));
+		String folderName = generateFolderName();
+		User user = new User(registrationUser);
+		userService.addUsers(user);
+		userService.setPath(user.getLogin(), folderName);
+		Storage file = new Storage(folderName);
+		file.createRootDirectory();
 		session.setAttribute("user", user);
 		request.getRequestDispatcher("ListOfUsers.jsp").forward(request, response);
 
 	}
-	
+
 	private RegistrationBean fieldsAddition(HttpServletRequest req) {
 		RegistrationBean user = new RegistrationBean();
 		user.setFirstName(req.getParameter(FIRST_NAME));
@@ -50,5 +57,10 @@ public class RegistrationServlet extends HttpServlet{
 		LOG.info("all fields have been added");
 		return user;
 	}
-		
+
+	private String generateFolderName(){
+		String result = RandomStringUtils.random(16, 0, 20, true, true, "qw32rfHIJk9iQ8Ud7h0X".toCharArray());
+		return result;
+	}
+
 }
