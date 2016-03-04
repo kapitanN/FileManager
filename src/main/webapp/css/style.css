@@ -1,5 +1,8 @@
 body{
-    background-color: #350f8b;
+    background: url("insart.jpg");
+    background-size:cover ;
+    background-position: bottom;
+    background-repeat: no-repeat;
 }
 a.button {
     display: inline-block;
