@@ -3,11 +3,12 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <div>${user.login }</div>
+<p><input type="file"></p>
 <div><c:forEach var="file" items = "${lst}">
 	<div>${file.name}</div> <div>${file.size}</div>  <div>${file.file}</div>	<div>${file.directory}</div>
 	<br>

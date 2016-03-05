@@ -4,20 +4,25 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="css/buttonStyle.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<title>Insert title here</title>
 </head>
 <body>
 <form action="registration" method="post">
+	<p class="title">Name</p>
 	<input type = "text" name = "firstName">
+	<p class="title">Last name</p>
 	<input type = "text" name = "lastName">
+	<p class="title">Login</p>
 	<input type = "text" name = "login">
+	<p class="title">Password</p>
 	<input type = "password" name = "password">
-	<input type="submit" value = "Sign up"/>
+	<p></p>
+	<button class = "button">Sign up</button>
 </form>
-<br/>
-<form action="AuthenticationForm.jsp" method="post">
-	<input type = "submit" value = "Sign in">
+<form>
+	<a href="AuthenticationForm.jsp" class = "button">Log In</a>
 </form>
 </body>
 </html>
