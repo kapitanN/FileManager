@@ -1,0 +1,19 @@
+div.file-block {
+    /*display: inline;*/
+    width: 200px;
+    height: 120px;
+    font-size: 60px;
+    margin: 15px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+div.file-block:hover{
+    background-color: rgba(133, 157, 152, 0.21);
+}
+
+div.folder-name {
+    /*display: inline;*/
+    font-size: 14px;
+    text-align: center;
+}
