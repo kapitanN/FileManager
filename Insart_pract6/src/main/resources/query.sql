@@ -1,0 +1,1 @@
+insert into logins (firstname,lastname,login,password) VALUES ('Rodion','Kolomoets','kolrad','kuku')
