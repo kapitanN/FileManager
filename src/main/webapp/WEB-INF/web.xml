@@ -5,6 +5,6 @@
          id="WebApp_ID" version="3.0">
 
     <welcome-file-list>
-        <welcome-file>WelcomePage.html</welcome-file>
+        <welcome-file>AuthenticationForm.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
