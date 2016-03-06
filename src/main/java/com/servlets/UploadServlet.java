@@ -32,8 +32,7 @@ public class UploadServlet extends HttpServlet {
             String fileName = extractFileName(part);
             part.write(savePath + File.separator + fileName);
             }
-        request.setAttribute("message", "Upload has been done successfully!");
-        getServletContext().getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
+        request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
     }
 
     private String extractFileName(Part part) {

@@ -35,7 +35,6 @@
 </head>
 <body>
 <form action="/UploadServlet" method="post" enctype="multipart/form-data">
-	<input name="description" type="text"><br>
 	<input name="data" type="file"><br>
 	<input type="submit"><br>
 </form>
