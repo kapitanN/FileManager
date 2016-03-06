@@ -7,8 +7,43 @@
 	<title>Insert title here</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/storage.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-1.3.2.js" ></script>
+	<script type="text/javascript" src="js/ajaxupload.3.5.js" ></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="js/ITHitWebDAVClient.js">
+	<%--<script type="text/javascript" >--%>
+		<%--$(function(){--%>
+			<%--var btnUpload=$('#upload');--%>
+			<%--var status=$('#status');--%>
+			<%--new AjaxUpload(btnUpload, {--%>
+				<%--action: '/storage',--%>
+				<%--name: 'uploadfile',--%>
+				<%--onComplete: function(file, response){--%>
+					<%--//On completion clear the status--%>
+					<%--status.text('');--%>
+					<%--//Add uploaded file to list--%>
+					<%--if(response==="success"){--%>
+						<%--$('<li></li>').appendTo('#files').html('<img src="./uploads/'+file+'" alt="" /><br />'+file).addClass('success');--%>
+					<%--} else{--%>
+						<%--$('<li></li>').appendTo('#files').text(file).addClass('error');--%>
+					<%--}--%>
+				<%--}--%>
+			<%--});--%>
+
+		<%--});--%>
+	<%--</script>--%>
 </head>
 <body>
+<form action="/UploadServlet" method="post" enctype="multipart/form-data">
+	<input name="description" type="text"><br>
+	<input name="data" type="file"><br>
+	<input type="submit"><br>
+</form>
+<%--<div id="mainbody" >--%>
+	<%--<!-- Upload Button, use any id you wish-->--%>
+	<%--<div id="upload" ><span>Upload File</span></div><span id="status" ></span>--%>
+	<%--<ul id="files" ></ul>--%>
+<%--</div>--%>
 <div>${user.login }</div>
 <%--<div class="container-fluid">--%>
 	<div class="container"><c:forEach var="file" items = "${lst}">
