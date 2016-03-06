@@ -22,6 +22,9 @@
 	<input type="text" name="folderName">
 	<button type="submit">Create</button>
 </form>
+<form action="/DeleteUser" method="post">
+	<button type="submit" name="delete">Delete account</button>
+</form>
 <div>${user.login }</div>
 <form id="storage" action="storage">
 	<div class="container-fluid"><c:forEach var="file" items = "${lst}">

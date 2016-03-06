@@ -3,8 +3,10 @@ package com.service;
 import com.DAO.Transaction;
 import com.DAO.User;
 import com.DAO.UserDAO;
+import com.storage.Storage;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.sql.SQLException;
 
 /**
@@ -43,7 +45,6 @@ public class UserServiceCore extends Service implements UserService {
             @Override
             public Object action() {
                 User result = null;
-
                 try {
                     result = userDAO.getUserByLogin(login);
                 } catch (SQLException e) {
@@ -88,12 +89,17 @@ public class UserServiceCore extends Service implements UserService {
     }
 
     @Override
-    public void deleteUser(final String login) {
+    public void deleteUser(final String login, final File file) {
         transactionManager.doInTransaction(new Transaction() {
             @Override
             public Object action() {
+                Storage storage = new Storage();
                 try {
+                    storage.deleteFiles(file);
+                    int id = userDAO.getUserByLogin(login).getIdUser();
+                    userDAO.deleteFiles(id);
                     userDAO.deleteUser(login);
+
                 } catch (SQLException e) {
                     LOG.error(e);
                 }
