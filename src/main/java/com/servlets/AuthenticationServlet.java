@@ -35,7 +35,6 @@ public class AuthenticationServlet extends HttpServlet {
 		AuthenticationBean login = fieldsAddition(request);
 		UserServiceCore userService = new UserServiceCore();
 		User user = userService.getUserByLogin(login.getLogin());
-		LOG.info("Current user ==> " + user);
 		boolean result = checkAuthentication(login);
 		LOG.info(Boolean.toString(result));
 		if(result){

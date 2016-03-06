@@ -42,7 +42,7 @@ public class Storage {
 		return files;
 	}
 
-	public void createRootDirectory(){
+	public void createDirectory(){
 		File newDirectory = new File(ROOT + path);
 		if (!newDirectory.exists()){
 			newDirectory.mkdirs();

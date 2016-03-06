@@ -42,7 +42,7 @@ public class RegistrationServlet extends HttpServlet{
 		userService.addUsers(user);
 		userService.setPath(user.getLogin(), folderName);
 		Storage file = new Storage(folderName);
-		file.createRootDirectory();
+		file.createDirectory();
 		session.setAttribute("user", user);
 		request.getRequestDispatcher("ListOfUsers.jsp").forward(request, response);
 
