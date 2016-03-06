@@ -30,6 +30,7 @@ public class AuthenticationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.info("doPost authentication");
 		HttpSession session = request.getSession();
+		session.setAttribute("currentPath", "");
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
 		AuthenticationBean login = fieldsAddition(request);
 		UserServiceCore userService = new UserServiceCore();

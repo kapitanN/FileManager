@@ -3,7 +3,8 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>Insert title here</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/storage.css" rel="stylesheet">
@@ -44,35 +45,31 @@
 	<%--<ul id="files" ></ul>--%>
 <%--</div>--%>
 <div>${user.login }</div>
-<%--<div class="container-fluid">--%>
-	<div class="container"><c:forEach var="file" items = "${lst}">
+<form id="storage" action="storage">
+	<div class="container-fluid"><c:forEach var="file" items = "${lst}">
 		<c:if test="${file.directory == true}">
-			<div class="col-md-4 col-xs-10 file-block ">
+			<input id="${file.name}" type="hidden" name="path" />
+			<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 				<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
 				<div class="folder-name">${file.name}</div>
 			</div>
 		</c:if>
 		<c:if test="${file.file eq true}">
-			<div class="col-md-4 col-xs-10 file-block ">
+			<div class="col-md-3 col-xs-10 file-block ">
 				<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 				<div class="folder-name">${file.name}</div>
 			</div>
 		</c:if>
 	</c:forEach></div>
-<%--</div>--%>
-<%--<div class="container-fluid">--%>
-	<%--<div class="file-block col-xs-2">--%>
-		<%--<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>--%>
-		<%--<div class="folder-name">folder 1</div>--%>
-	<%--</div>--%>
-	<%--<div class="file-block col-xs-2">--%>
-		<%--<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>--%>
-		<%--<div class="folder-name">folder 2</div>--%>
-	<%--</div>--%>
-	<%--<div class="file-block col-xs-2">--%>
-		<%--<span class="glyphicon glyphicon-file" aria-hidden="true"></span>--%>
-		<%--<div class="folder-name">file 2</div>--%>
-	<%--</div>--%>
-<%--</div>--%>
+</form>
+
+<script type="application/javascript">
+	function redirect(current, future) {
+		var storageForm = document.getElementById("storage");
+		var storageInput = document.getElementById(future);
+		storageInput.value = current + future;
+		storageForm.submit();
+	}
+</script>
 </body>
 </html>
