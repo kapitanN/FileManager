@@ -25,10 +25,8 @@ public class StorageServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String userFolder = (String) session.getAttribute("userPath"); // d
         String clientPath = request.getParameter("path"); // 666
+        session.setAttribute("currentPath", clientPath + "/");
         Storage s = new Storage(userFolder + File.separator + clientPath);
-        Storage forFiles = new Storage(userFolder);
-        String source = "D:\\Study\\Test";
-        forFiles.setFiles(source);
         List<FileBean> lst = s.getFileBean();
         session.setAttribute("lst", lst);
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);

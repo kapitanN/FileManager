@@ -30,11 +30,11 @@ public class AuthenticationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LOG.info("doPost authentication");
 		HttpSession session = request.getSession();
+		session.setAttribute("currentPath", "");
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
 		AuthenticationBean login = fieldsAddition(request);
 		UserServiceCore userService = new UserServiceCore();
 		User user = userService.getUserByLogin(login.getLogin());
-		LOG.info("Current user ==> " + user);
 		boolean result = checkAuthentication(login);
 		LOG.info(Boolean.toString(result));
 		if(result){

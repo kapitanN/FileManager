@@ -22,8 +22,14 @@ public class UploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String path = (String)session.getAttribute("userPath");
-        String savePath = ROOT + path;
+        String userPath = (String)session.getAttribute("userPath");
+        String path = (String)session.getAttribute("currentPath");
+        String savePath = null;
+        if (path == null){
+            savePath = ROOT + userPath;
+        }else {
+            savePath = ROOT + userPath + File.separator +  path;
+        }
         File fileSaveDir = new File(savePath);
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
@@ -32,8 +38,8 @@ public class UploadServlet extends HttpServlet {
             String fileName = extractFileName(part);
             part.write(savePath + File.separator + fileName);
             }
-        request.setAttribute("message", "Upload has been done successfully!");
-        getServletContext().getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
+        request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
+
     }
 
     private String extractFileName(Part part) {

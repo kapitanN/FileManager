@@ -17,6 +17,7 @@ public class Storage {
 	private static final String ROOT = "D:\\Filestorage\\";
 	private String path ;
 
+	public Storage(){}
 	public Storage(String path) {
 		this.path = path;
 	}
@@ -42,7 +43,7 @@ public class Storage {
 		return files;
 	}
 
-	public void createRootDirectory(){
+	public void createDirectory(){
 		File newDirectory = new File(ROOT + path);
 		if (!newDirectory.exists()){
 			newDirectory.mkdirs();
@@ -60,7 +61,24 @@ public class Storage {
 		}
 
 	}
-
-
-
+	public String deleteFiles(File file){
+		//File file = new File(ROOT + pathToFile);
+		if (!file.exists()){
+			return "File does not exist.";
+		}
+		else {
+			if (file.isDirectory()){
+				for (File fileIterate : file.listFiles()){
+					if (fileIterate.isDirectory()){
+						deleteFiles(fileIterate);
+					}
+					else {
+						fileIterate.delete();
+					}
+				}
+				file.delete();
+			}
+			return "File deleted.";
+		}
+	}
 }

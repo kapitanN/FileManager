@@ -19,7 +19,8 @@ public class UserDAO {
     private static final String USER_PASSWORD = "password";
 
     private static final String ADD_USER = "INSERT INTO logins (firstname, lastname, login, password) VALUES (?,?,?,?)";
-    private static final String DELETE_USER = "DELETE FROM logins WHERE login=?";
+    private static final String DELETE_USER = "DELETE FROM logins WHERE login=? ";
+    private static final String DELETE_FILES = "DELETE FROM filepath WHERE id_user=?";
     private static final String GET_USER_BY_LOGIN = "SELECT * FROM logins WHERE logins.login = ?";
     private static final String SET_PATH = "INSERT INTO filepath (id_user, foldername) VALUES (?,?)";
     private static final String GET_PATH = "SELECT foldername FROM filepath WHERE filepath.id_user = ?";
@@ -101,6 +102,22 @@ public class UserDAO {
         try{
             statement = ConnectionHolder.getConnection().prepareStatement(DELETE_USER);
             statement.setString(1, login);
+            statement.execute();
+        }
+        catch (SQLException e){
+            LOG.error(e);
+        }
+        finally {
+            statement.close();
+        }
+    }
+
+    public void deleteFiles(int userId) throws SQLException{
+        PreparedStatement statement = null;
+        try{
+            statement = ConnectionHolder.getConnection().prepareStatement(DELETE_FILES);
+            statement.setInt(1, userId);
+            statement.execute();
         }
         catch (SQLException e){
             LOG.error(e);
