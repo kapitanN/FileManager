@@ -11,7 +11,6 @@
 	<script type="text/javascript" src="js/jquery-1.3.2.js" ></script>
 	<script type="text/javascript" src="js/ajaxupload.3.5.js" ></script>
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
-	<link rel="stylesheet" type="text/javascript" href="js/ITHitWebDAVClient.js">
 </head>
 <body>
 <form action="/UploadServlet" method="post" enctype="multipart/form-data">
@@ -24,6 +23,9 @@
 </form>
 <form action="/DeleteUser" method="post">
 	<button type="submit" name="delete">Delete account</button>
+</form>
+<form action="/LogOutServlet" method="post">
+	<button type="submit" name="logOut">Log out</button>
 </form>
 <div>${user.login }</div>
 <form id="storage" action="storage">
