@@ -44,7 +44,7 @@ public class RegistrationServlet extends HttpServlet{
 		Storage file = new Storage(folderName);
 		file.createDirectory();
 		session.setAttribute("user", user);
-		request.getRequestDispatcher("ListOfUsers.jsp").forward(request, response);
+		request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
 
 	}
 
