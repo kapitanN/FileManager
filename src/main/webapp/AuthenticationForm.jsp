@@ -13,7 +13,7 @@
     <script type="text/javascript" src="js/loginvalidation.js"></script>
 </head>
 <body>
-    <form action="authentication" method="post" id="loginform">
+    <form action="/authentication" method="post" id="loginform">
         <p class="title">Login</p>
         <input type="text" name="login">
         <p class="title">Password</p>
