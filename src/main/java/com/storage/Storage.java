@@ -49,6 +49,12 @@ public class Storage {
 			newDirectory.mkdirs();
 		}
 	}
+	public void createDirectory(){
+		File newDirectory = new File(ROOT + path);
+		if (!newDirectory.exists()){
+			newDirectory.mkdirs();
+		}
+	}
 	public void setFiles(String sourcePath) {
 		Path pathSource = Paths.get(sourcePath);
 		String dirPath =  "\\" + String.valueOf(pathSource.getFileName());
