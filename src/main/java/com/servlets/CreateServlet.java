@@ -1,5 +1,6 @@
 package com.servlets;
 
+import com.beans.FileBean;
 import com.storage.Storage;
 import org.apache.log4j.Logger;
 
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by Nikita on 06.03.2016.
@@ -18,6 +21,7 @@ import java.io.IOException;
 @WebServlet("/CreateServlet")
 public class CreateServlet extends HttpServlet {
     private static Logger LOG = Logger.getLogger(CreateServlet.class);
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String userPath = (String)session.getAttribute("userPath");
@@ -32,6 +36,10 @@ public class CreateServlet extends HttpServlet {
         }
         Storage storage = new Storage(pathCreateFolder);
         storage.createDirectory();
+        List<File> lst = storage.getFiles();
+        session.setAttribute("lst",lst);
+        PrintWriter printWriter = response.getWriter();
+        printWriter.print();
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
     }
 
