@@ -39,7 +39,7 @@ public class CreateServlet extends HttpServlet {
         List<File> lst = storage.getFiles();
         session.setAttribute("lst",lst);
         PrintWriter printWriter = response.getWriter();
-        printWriter.print();
+       //printWriter.print();
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
     }
 

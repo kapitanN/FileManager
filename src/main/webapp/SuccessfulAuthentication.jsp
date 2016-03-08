@@ -42,7 +42,7 @@
 		</form>
 		<br>
 		<button>Create folder</button>
-		<form>
+		<form action="/CreateServlet" method="post">
 				<p style="display: none"><input id ="folderName" type="text" name="folderName" style="width: 100%"></p>
 				<p style="display: none"><button id="btn" type="submit">Create</button></p>
 		</form>
