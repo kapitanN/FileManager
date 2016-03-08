@@ -51,23 +51,23 @@
 		<c:forEach var="file" items="${lst}">
 			${file.name}
 		</c:forEach>
-		<form id="storage" action="storage">
-			<div class="container-fluid"><c:forEach var="file" items="${lst}">
-				<c:if test="${file.directory == true}">
+		<div class="container-fluid"><c:forEach var="file" items="${lst}">
+			<c:if test="${file.directory == true}">
+				<form id="storage${file.name}" action="storage">
 					<input id="${file.name}" type="hidden" name="path"/>
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
 						<div class="folder-name">${file.name}</div>
 					</div>
-				</c:if>
-				<c:if test="${file.file eq true}">
-					<div class="col-md-3 col-xs-10 file-block ">
-						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-						<div class="folder-name">${file.name}</div>
-					</div>
-				</c:if>
-			</c:forEach></div>
-		</form>
+				</form>
+			</c:if>
+			<c:if test="${file.file eq true}">
+				<div class="col-md-3 col-xs-10 file-block ">
+					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+					<div class="folder-name">${file.name}</div>
+				</div>
+			</c:if>
+		</c:forEach></div>
 	</div>
 </div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -80,7 +80,7 @@
 </script>
 <script type="application/javascript">
 	function redirect(current, future) {
-		var storageForm = document.getElementById("storage");
+		var storageForm = document.getElementById("storage" + future);
 		var storageInput = document.getElementById(future);
 		storageInput.value = current + future;
 		storageForm.submit();
