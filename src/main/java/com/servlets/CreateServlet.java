@@ -36,15 +36,20 @@ public class CreateServlet extends HttpServlet {
         else {
             pathCreateFolder = userPath + File.separator + currentPath + File.separator + folder;
         }
-        Storage storage = new Storage(pathCreateFolder);
-        storage.createDirectory();
-        List<File> lst = storage.getFiles();
+        Storage storage = new Storage(userPath + File.separator + currentPath);
+        storage.createDirectory(folder);
+        List<FileBean> lst = storage.getFileBean();
         session.setAttribute("lst",lst);
+        System.out.println("start");
+        for (FileBean f: lst) {
+            LOG.info(f.getName());
+        }
+        System.out.println("end");
         JSONObject result = new JSONObject();
-        result.append("list", lst);
+        result.append("lst", lst);
         response.setContentType("text/html");
         response.getWriter().write(result.toString());
-        request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
+//        request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

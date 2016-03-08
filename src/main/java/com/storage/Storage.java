@@ -43,8 +43,8 @@ public class Storage {
 		return files;
 	}
 
-	public void createDirectory(){
-		File newDirectory = new File(ROOT + path);
+	public void createDirectory(String folder){
+		File newDirectory = new File(ROOT + path + File.separator + folder);
 		if (!newDirectory.exists()){
 			newDirectory.mkdirs();
 		}
