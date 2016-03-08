@@ -3,6 +3,7 @@ package com.servlets;
 import com.beans.FileBean;
 import com.storage.Storage;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Nikita on 06.03.2016.
@@ -38,8 +40,10 @@ public class CreateServlet extends HttpServlet {
         storage.createDirectory();
         List<File> lst = storage.getFiles();
         session.setAttribute("lst",lst);
-        PrintWriter printWriter = response.getWriter();
-       //printWriter.print();
+        JSONObject result = new JSONObject();
+        result.append("list", lst);
+        response.setContentType("text/html");
+        response.getWriter().write(result.toString());
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
     }
 
