@@ -29,27 +29,16 @@ public class CreateServlet extends HttpServlet {
         String userPath = (String)session.getAttribute("userPath");
         String currentPath = (String)session.getAttribute("currentPath");
         String folder = request.getParameter("folderName");
-        String pathCreateFolder = null;
-        if (currentPath == null){
-            pathCreateFolder = userPath + File.separator + folder;
-        }
-        else {
-            pathCreateFolder = userPath + File.separator + currentPath + File.separator + folder;
-        }
         Storage storage = new Storage(userPath + File.separator + currentPath);
         storage.createDirectory(folder);
         List<FileBean> lst = storage.getFileBean();
         session.setAttribute("lst",lst);
         System.out.println("start");
-        for (FileBean f: lst) {
-            LOG.info(f.getName());
-        }
         System.out.println("end");
         JSONObject result = new JSONObject();
         result.append("lst", lst);
         response.setContentType("text/html");
         response.getWriter().write(result.toString());
-//        request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
