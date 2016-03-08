@@ -61,10 +61,12 @@ public class AuthenticationServlet extends HttpServlet {
 	
 	private static boolean checkAuthentication(AuthenticationBean loginUser){
 		UserService userService = new UserServiceCore();
+		if (userService.getUserByLogin(loginUser.getLogin()) != null){
 		User user = userService.getUserByLogin(loginUser.getLogin());
 		if (loginUser.getLogin().equals(user.getLogin()) && loginUser.getPassword().equals(user.getPassword())){
 				return true;
 			}
+		}
 		return false;
 	}
 }
