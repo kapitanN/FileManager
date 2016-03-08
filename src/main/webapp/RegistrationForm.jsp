@@ -7,9 +7,13 @@
 	<link href="css/buttonStyle.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<title>Insert title here</title>
+	<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="js/signupvalidation.js"></script>
 </head>
 <body>
-<form action="registration" method="post">
+<form action="registration" method="post" id="registrationform">
 	<p class="title">Name</p>
 	<input type = "text" name = "firstName">
 	<p class="title">Last name</p>
@@ -21,6 +25,7 @@
 	<p></p>
 	<button class = "button">Sign up</button>
 </form>
+<br>
 <form>
 	<a href="AuthenticationForm.jsp" class = "button">Log In</a>
 </form>

@@ -40,3 +40,6 @@ html, body .container{
     background: #8fa09b; /* Цвет фона шапки */
     color: #ffe; /* Цвет текста */
 }
+.error{
+    color: #c75632;
+}

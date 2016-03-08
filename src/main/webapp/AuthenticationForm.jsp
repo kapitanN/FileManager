@@ -7,9 +7,13 @@
     <title>Insert title here</title>
     <link href="css/buttonStyle.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="js/loginvalidation.js"></script>
 </head>
 <body>
-    <form action="authentication" method="post">
+    <form action="authentication" method="post" id="loginform">
         <p class="title">Login</p>
         <input type="text" name="login">
         <p class="title">Password</p>
