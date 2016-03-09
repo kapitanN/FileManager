@@ -41,10 +41,10 @@
 			<input type="submit" value="Upload"><br>
 		</form>
 		<br>
-		<button>Create folder</button>
+		<button onclick="setCurrPath('${currentPath}')">Create folder</button>
 		<form action="/CreateServlet" method="post">
-				<p style="display: none"><input id ="folderName" type="text" name="folderName" style="width: 100%"></p>
-				<p style="display: none"><button id="btn" type="submit">Create</button></p>
+			<p style="display: none"><input id ="folderName" type="text" name="folderName" style="width: 100%"></p>
+			<p style="display: none"><button id="btn" type="submit">Create</button></p>
 		</form>
 	</div>
 	<div id="content">
@@ -70,7 +70,6 @@
 		</c:forEach></div>
 	</div>
 </div>
-</div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(document).ready(function(){
@@ -80,11 +79,49 @@
 	});
 </script>
 <script type="application/javascript">
+	var currPath = "";
+
+	$('#container-fluid').on('click', function(event){
+		var el = event.target;
+		var ho = currPath;
+		switch (el.tagName){
+			case "DIV":
+				var future = el.childNodes[3].textContent;
+				var storageForm = document.getElementById("storage" + future);
+				var storageInput = document.getElementById(future);
+				storageInput.value = ho + future;
+				storageForm.submit();
+				break;
+
+			case "SPAN":
+				var parentEl = el.parentNode;
+				var future = parentEl.childNodes[3].textContent;
+				var storageForm = document.getElementById("storage" + future);
+				var storageInput = document.getElementById(future);
+				storageInput.value = ho + future;
+				storageForm.submit();
+				break;
+
+			case "H2":
+				var future = el.textContent;
+				var storageForm = document.getElementById("storage" + future);
+				var storageInput = document.getElementById(future);
+				storageInput.value = ho + future;
+				storageForm.submit();
+				break;
+		}
+
+	})
+
+	function setCurrPath(path) {
+		currPath = path;
+	}
+
 	function redirect(current, future) {
-		var storageForm = document.getElementById("storage" + future);
-		var storageInput = document.getElementById(future);
-		storageInput.value = current + future;
-		storageForm.submit();
+//		var storageForm = document.getElementById("storage" + future);
+//		var storageInput = document.getElementById(future);
+//		storageInput.value = current + future;
+//		storageForm.submit();
 	}
 </script>
 </body>
