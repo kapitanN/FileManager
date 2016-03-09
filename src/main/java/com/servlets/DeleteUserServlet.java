@@ -3,7 +3,7 @@ package com.servlets;
 import com.DAO.ConnectionHolder;
 import com.DAO.DBmanager;
 import com.DAO.User;
-import com.service.UserServiceCore;
+import com.service.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
-        UserServiceCore userService = new UserServiceCore();
+        Service userService = new Service();
         User user = (User) session.getAttribute("user");
         String path = (String) session.getAttribute("userPath");
         File file = new File(ROOT + path);

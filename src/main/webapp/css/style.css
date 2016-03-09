@@ -1,6 +1,12 @@
 p.title{
     color: gold;
 }
+
+#logform{
+    font-size: 2.2em;
+    padding: 5px;
+}
+
 #login{
     position: absolute;
     top: 0px;

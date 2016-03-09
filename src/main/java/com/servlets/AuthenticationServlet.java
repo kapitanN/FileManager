@@ -5,8 +5,8 @@ import com.DAO.DBmanager;
 import com.DAO.User;
 import com.beans.AuthenticationBean;
 import com.beans.FileBean;
-import com.service.UserService;
-import com.service.UserServiceCore;
+import com.service.Service;
+import com.service.Service;
 import com.storage.Storage;
 import org.apache.log4j.Logger;
 
@@ -33,7 +33,7 @@ public class AuthenticationServlet extends HttpServlet {
 		session.setAttribute("currentPath", "");
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
 		AuthenticationBean login = fieldsAddition(request);
-		UserServiceCore userService = new UserServiceCore();
+		Service userService = new Service();
 		User user = userService.getUserByLogin(login.getLogin());
 		boolean result = checkAuthentication(login);
 		LOG.info(Boolean.toString(result));
@@ -60,7 +60,7 @@ public class AuthenticationServlet extends HttpServlet {
 	}
 	
 	private static boolean checkAuthentication(AuthenticationBean loginUser){
-		UserService userService = new UserServiceCore();
+		Service userService = new Service();
 		if (userService.getUserByLogin(loginUser.getLogin()) != null){
 		User user = userService.getUserByLogin(loginUser.getLogin());
 		if (loginUser.getLogin().equals(user.getLogin()) && loginUser.getPassword().equals(user.getPassword())){

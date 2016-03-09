@@ -57,7 +57,7 @@
 					<input id="${file.name}" type="hidden" name="path"/>
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-						<div class="folder-name">${file.name}</div>
+						<h2 class="folder-name">${file.name}</h2>
 					</div>
 				</form>
 			</c:if>
@@ -69,6 +69,7 @@
 			</c:if>
 		</c:forEach></div>
 	</div>
+</div>
 </div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>

@@ -13,13 +13,17 @@
     <script type="text/javascript" src="js/loginvalidation.js"></script>
 </head>
 <body>
+<div id="logform">
     <form action="authentication" method="post" id="loginform">
         <p class="title">Login</p>
         <input type="text" name="login">
         <p class="title">Password</p>
         <input type="password" name="password" class="login">
-        <p><button class="button">Log in</button></p>
+        <p>
+            <button class="button">Log in</button>
+        </p>
         <a href="RegistrationForm.jsp" class="button">Sign up</a>
     </form>
+</div>
 </body>
 </html>

@@ -4,8 +4,8 @@ import com.DAO.ConnectionHolder;
 import com.DAO.DBmanager;
 import com.DAO.User;
 import com.beans.RegistrationBean;
-import com.service.UserService;
-import com.service.UserServiceCore;
+import com.service.Service;
+import com.service.Service;
 import com.storage.Storage;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
@@ -36,17 +36,22 @@ public class RegistrationServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		ConnectionHolder.setConnectionThreadLocal(DBmanager.getConnection());
 		RegistrationBean registrationUser = fieldsAddition(request);
-		UserService userService = new UserServiceCore();
-		String folderName = generateFolderName();
-		User user = new User(registrationUser);
-		userService.addUsers(user);
-		userService.setPath(user.getLogin(), folderName);
-		Storage file = new Storage(folderName);
-		file.createDirectory();
-		session.setAttribute("user", user);
-		session.setAttribute("userPath", folderName);
-		request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
-
+		boolean check = checkRegistrationLogin(registrationUser);
+		if (check){
+			Service userService = new Service();
+			String folderName = generateFolderName();
+			User user = new User(registrationUser);
+			userService.addUsers(user);
+			userService.setPath(user.getLogin(), folderName);
+			Storage file = new Storage(folderName);
+			file.createDirectory();
+			session.setAttribute("user", user);
+			session.setAttribute("userPath", folderName);
+			request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
+		}
+		else {
+			request.getRequestDispatcher("FailRegistration.jsp").forward(request, response);
+		}
 	}
 
 	private RegistrationBean fieldsAddition(HttpServletRequest req) {
@@ -62,6 +67,17 @@ public class RegistrationServlet extends HttpServlet{
 	private String generateFolderName(){
 		String result = RandomStringUtils.random(16, 0, 20, true, true, "qw32rfHIJk9iQ8Ud7h0X".toCharArray());
 		return result;
+	}
+
+	private static boolean checkRegistrationLogin(RegistrationBean login){
+		Service service = new Service();
+		if (service.getUserByLogin(login.getLogin()) != null){
+			User user = service.getUserByLogin(login.getLogin());
+			if (user.getLogin().equals(login.getLogin())){
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
