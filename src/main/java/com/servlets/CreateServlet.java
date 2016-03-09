@@ -29,7 +29,7 @@ public class CreateServlet extends HttpServlet {
         String two = "<input id=\"" + folder + "\" type=\"hidden\" name=\"path\" />";
         String three = "<div class=\"col-md-3 col-xs-10 file-block\" onclick=\"redirect(" + currentPath + ", " + folder + ")\">";
         String four = "<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>";
-        String five = "<div class=\"folder-name\">" + folder + "</div>";
+        String five = "<h2 class=\"folder-name\">" + folder + "</h2>";
         String six = "</div>";
         return two + three + four + five + six;
     }
@@ -49,6 +49,9 @@ public class CreateServlet extends HttpServlet {
         result.append("lst", lst);
         response.setContentType("text/html");
         String newFolder = generateFolderElement(folder, currentPath);
+        LOG.info(folder);
+        LOG.info(currentPath);
+        LOG.info(userPath);
         response.getWriter().write(newFolder);
     }
 
