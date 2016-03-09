@@ -58,6 +58,7 @@
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
 						<h2 class="folder-name">${file.name}</h2>
+						<div class="remove-action"><span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
 					</div>
 				</form>
 			</c:if>
@@ -65,6 +66,7 @@
 				<div class="col-md-3 col-xs-10 file-block ">
 					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 					<div class="folder-name">${file.name}</div>
+					<div class="remove-action"><span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
 				</div>
 			</c:if>
 		</c:forEach></div>
