@@ -7,10 +7,10 @@ $(document).ready(function(){
         rules: {
             firstName:{
                 required: true,
-                pattern: '/^[a-zA-Zа-яА-Я]*$/'
+                pattern: '^[a-zA-Zа-яА-Я]*$'
             },
             lastName:{
-                pattern: '/^[a-zA-Zа-яА-Я]*$/',
+                pattern: '^[a-zA-Zа-яА-Я]*$',
                 required: true,
 
             },
