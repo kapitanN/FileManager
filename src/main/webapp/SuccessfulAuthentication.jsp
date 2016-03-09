@@ -41,7 +41,7 @@
 			<input type="submit" value="Upload"><br>
 		</form>
 		<br>
-		<button onclick="setCurrPath('${currentPath}')">Create folder</button>
+		<button>Create folder</button>
 		<form action="/CreateServlet" method="post">
 				<p style="display: none"><input id ="folderName" type="text" name="folderName" style="width: 100%"></p>
 				<p style="display: none"><button id="btn" type="submit">Create</button></p>
@@ -57,7 +57,7 @@
 					<input id="${file.name}" type="hidden" name="path"/>
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-						<h2 class="folder-name">${file.name}</h2>
+						<div class="folder-name">${file.name}</div>
 					</div>
 				</form>
 			</c:if>
@@ -79,49 +79,11 @@
 	});
 </script>
 <script type="application/javascript">
-    var currPath = "";
-
-    $('#container-fluid').on('click', function(event){
-        var el = event.target;
-        var ho = currPath;
-        switch (el.tagName){
-            case "DIV":
-                var future = el.childNodes[3].textContent;
-                var storageForm = document.getElementById("storage" + future);
-                var storageInput = document.getElementById(future);
-                storageInput.value = ho + future;
-		        storageForm.submit();
-                break;
-
-            case "SPAN":
-                var parentEl = el.parentNode;
-                var future = parentEl.childNodes[3].textContent;
-                var storageForm = document.getElementById("storage" + future);
-                var storageInput = document.getElementById(future);
-                storageInput.value = ho + future;
-                storageForm.submit();
-                break;
-
-            case "H2":
-                var future = el.textContent;
-                var storageForm = document.getElementById("storage" + future);
-                var storageInput = document.getElementById(future);
-                storageInput.value = ho + future;
-                storageForm.submit();
-                break;
-        }
-
-    })
-
-    function setCurrPath(path) {
-        currPath = path;
-    }
-
 	function redirect(current, future) {
-//		var storageForm = document.getElementById("storage" + future);
-//		var storageInput = document.getElementById(future);
-//		storageInput.value = current + future;
-//		storageForm.submit();
+		var storageForm = document.getElementById("storage" + future);
+		var storageInput = document.getElementById(future);
+		storageInput.value = current + future;
+		storageForm.submit();
 	}
 </script>
 </body>

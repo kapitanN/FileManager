@@ -10,7 +10,7 @@ div.file-block:hover{
     background-color: rgba(133, 157, 152, 0.21);
 }
 
-h2.folder-name {
+div.folder-name {
     font-size: 14px;
     text-align: center;
 }
