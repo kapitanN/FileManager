@@ -26,9 +26,9 @@ public class CreateServlet extends HttpServlet {
 
     private String generateFolderElement(String folder, String currentPath) {
 //        String one = "<form id=\"storage" + folder + "\" action=\"storage\">";
-        String two = "<input id=\"" + folder + "\" type=\"hidden\" name=\"path\" />";
-        String three = "<div class=\"col-md-3 col-xs-10 file-block\" onclick=\"redirect(" + currentPath + ", " + folder + ")\">";
-        String four = "<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>";
+        String two = "<input id=\"" + folder + "\" type=\"hidden\" name=\"path\" />\n";
+        String three = "<div class=\"col-md-3 col-xs-10 file-block\" onclick=\"redirect(" + currentPath + ", " + folder + ")\">\n";
+        String four = "<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>\n";
         String five = "<h2 class=\"folder-name\">" + folder + "</h2>";
         String six = "</div>";
         return two + three + four + five + six;
