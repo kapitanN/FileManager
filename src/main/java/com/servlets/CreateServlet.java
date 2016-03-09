@@ -24,6 +24,16 @@ import java.util.Scanner;
 public class CreateServlet extends HttpServlet {
     private static Logger LOG = Logger.getLogger(CreateServlet.class);
 
+    private String generateFolderElement(String folder, String currentPath) {
+//        String one = "<form id=\"storage" + folder + "\" action=\"storage\">";
+        String two = "<input id=\"" + folder + "\" type=\"hidden\" name=\"path\" />";
+        String three = "<div class=\"col-md-3 col-xs-10 file-block\" onclick=\"redirect(" + currentPath + ", " + folder + ")\">";
+        String four = "<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>";
+        String five = "<div class=\"folder-name\">" + folder + "</div>";
+        String six = "</div>";
+        return two + three + four + five + six;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String userPath = (String)session.getAttribute("userPath");
@@ -38,7 +48,8 @@ public class CreateServlet extends HttpServlet {
         JSONObject result = new JSONObject();
         result.append("lst", lst);
         response.setContentType("text/html");
-        response.getWriter().write(result.toString());
+        String newFolder = generateFolderElement(folder, currentPath);
+        response.getWriter().write(newFolder);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

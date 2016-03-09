@@ -51,7 +51,7 @@
 		<c:forEach var="file" items="${lst}">
 			${file.name}
 		</c:forEach>
-		<div class="container-fluid"><c:forEach var="file" items="${lst}">
+		<div id="container-fluid" class="container-fluid"><c:forEach var="file" items="${lst}">
 			<c:if test="${file.directory == true}">
 				<form id="storage${file.name}" action="storage">
 					<input id="${file.name}" type="hidden" name="path"/>
