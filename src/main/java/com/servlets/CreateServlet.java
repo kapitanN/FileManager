@@ -22,10 +22,8 @@ import java.util.Scanner;
  */
 @WebServlet("/CreateServlet")
 public class CreateServlet extends HttpServlet {
-    private static Logger LOG = Logger.getLogger(CreateServlet.class);
 
     private String generateFolderElement(String folder, String currentPath) {
-//        String one = "<form id=\"storage" + folder + "\" action=\"storage\">";
         String two = "<input id=\"" + folder + "\" type=\"hidden\" name=\"path\" />\n";
         String three = "<div class=\"col-md-3 col-xs-10 file-block\" onclick=\"redirect(" + currentPath + ", " + folder + ")\">\n";
         String four = "<span class=\"glyphicon glyphicon-folder-open\" aria-hidden=\"true\"></span>\n";
@@ -43,15 +41,10 @@ public class CreateServlet extends HttpServlet {
         storage.createDirectory(folder);
         List<FileBean> lst = storage.getFileBean();
         session.setAttribute("lst",lst);
-        System.out.println("start");
-        System.out.println("end");
         JSONObject result = new JSONObject();
         result.append("lst", lst);
         response.setContentType("text/html");
         String newFolder = generateFolderElement(folder, currentPath);
-        LOG.info(folder);
-        LOG.info(currentPath);
-        LOG.info(userPath);
         response.getWriter().write(newFolder);
     }
 
