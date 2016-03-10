@@ -36,9 +36,9 @@
 		<div style=" width:100%; height:1px; clear:both;"></div>
 	</div>
 	<div id="sidebar">
-		<form action="/UploadServlet" method="post" enctype="multipart/form-data">
-			<input name="data" type="file" value="Select file" style="width: 100%"><br>
-			<input type="submit" value="Upload"><br>
+		<form id="file_upload" action="/UploadServlet" method="post" enctype="multipart/form-data">
+			<input id="data" name="data" type="file" value="Select file" style="width: 100%"><br>
+			<input type="submit" value="Upload" onclick="setCurrPath('${currentPath}')"><br>
 		</form>
 		<br>
 		<button onclick="setCurrPath('${currentPath}')">Create folder</button>
@@ -48,26 +48,27 @@
 		</form>
 	</div>
 	<div id="content">
-		<c:forEach var="file" items="${lst}">
-			${file.name}
-		</c:forEach>
 		<div id="container-fluid" class="container-fluid"><c:forEach var="file" items="${lst}">
 			<c:if test="${file.directory == true}">
 				<form id="storage${file.name}" action="storage">
 					<input id="${file.name}" type="hidden" name="path"/>
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-						<h2 class="folder-name">${file.name}</h2>
-						<div class="remove-action"><span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
+						<h3 class="folder-name">${file.name}</h3>
+						<div class="remove-action">
+							<span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
 					</div>
 				</form>
 			</c:if>
 			<c:if test="${file.file eq true}">
-				<div class="col-md-3 col-xs-10 file-block ">
-					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-					<div class="folder-name">${file.name}</div>
-					<div class="remove-action"><span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
-				</div>
+				<form action="storage" id="storage${file.name}">
+					<div class="col-md-3 col-xs-10 file-block ">
+						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+						<h3 class="folder-name">${file.name}</h3>
+						<div class="remove-action">
+							<span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true"/></div>
+					</div>
+				</form>
 			</c:if>
 		</c:forEach></div>
 	</div>
@@ -104,7 +105,7 @@
 				storageForm.submit();
 				break;
 
-			case "H2":
+			case "H3":
 				var future = el.textContent;
 				var storageForm = document.getElementById("storage" + future);
 				var storageInput = document.getElementById(future);

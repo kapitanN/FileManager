@@ -14,7 +14,7 @@ div.file-block:hover{
 }
 
 div.folder-name {
-    font-size: 14px;
+    font-size: 4px;
     text-align: center;
 }
 
@@ -42,8 +42,8 @@ div.folder-name {
 div.remove-action {
     font-size: 16px;
     position: relative;
-    bottom: 150px;
-    left: 80px;
+    bottom: 110px;
+    left: 100px;
     color: #ffffff;
     transition: color 500ms;
 }

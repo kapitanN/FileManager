@@ -20,10 +20,22 @@ public class UploadServlet extends HttpServlet {
     private static Logger LOG = Logger.getLogger(UploadServlet.class);
     private static final String ROOT = "D:\\Filestorage\\";
 
+    private String generateFileElement(String file, String currentPath) {
+        String two = "<input id=\"" + file + "\" type=\"hidden\" name=\"path\" />\n";
+        String three = "<div class=\"col-md-3 col-xs-10 file-block\" >\n";
+        String four = "<span class=\"glyphicon glyphicon-file\" aria-hidden=\"true\"></span>\n";
+        String five = "<h3 class=\"folder-name\">" + file + "</h3>";
+        String six = "</div>";
+        return two + three + four + five + six;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         String userPath = (String)session.getAttribute("userPath");
         String path = (String)session.getAttribute("currentPath");
+        Object object = request.getParameter("data");
+        System.out.println(object);
         String savePath = null;
         if (path == null){
             savePath = ROOT + userPath;
@@ -34,10 +46,14 @@ public class UploadServlet extends HttpServlet {
         if (!fileSaveDir.exists()) {
             fileSaveDir.mkdir();
         }
+        String fileName = null;
         for (Part part : request.getParts()) {
-            String fileName = extractFileName(part);
+            fileName = extractFileName(part);
             part.write(savePath + File.separator + fileName);
             }
+        response.setContentType("text/html");
+        response.getWriter().write(generateFileElement(fileName, savePath));
+
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
 
     }
