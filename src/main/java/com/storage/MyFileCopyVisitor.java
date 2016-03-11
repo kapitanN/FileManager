@@ -20,6 +20,7 @@ class MyFileCopyVisitor extends SimpleFileVisitor<Path> {
             e.printStackTrace();
         }
         return FileVisitResult.CONTINUE;
+        p
     }
 
     public FileVisitResult preVisitDirectory(Path path,BasicFileAttributes fileAttributes) {
