@@ -15,11 +15,11 @@ $(document).ready(function(){
             },
         messages:{
             login:{
-                required: "Поле обязательно для заполения.",
+                required: "Field must be filled.",
             },
             password:{
-                required: "Поле обязательно для заполнения.",
-                minlength: "Пароль должен быть больше пяти символов.",
+                required: "Field must be filled.",
+                minlength: "Password must be more than 5 characters.",
             },
         }
     });

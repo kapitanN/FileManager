@@ -37,6 +37,7 @@ public class AuthenticationServlet extends HttpServlet {
 		User user = userService.getUserByLogin(login.getLogin());
 		boolean result = checkAuthentication(login);
 		LOG.info(Boolean.toString(result));
+
 		if(result){
 			session.setAttribute("user", user);
 			String path = userService.getPath(user.getIdUser());

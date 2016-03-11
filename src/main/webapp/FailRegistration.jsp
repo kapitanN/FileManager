@@ -15,7 +15,7 @@
 </head>
 <body>
 <form>
-    <p style="color: gold">Login already exists. Please, try another.</p>
+    <p style="color: gold; font-size: 1.5em;" >Login already exists. Please, try another.</p>
 </form>
 <a href="RegistrationForm.jsp" class = "button">Sign up</a>
 <a href="AuthenticationForm.jsp" class = "button">Log In</a>

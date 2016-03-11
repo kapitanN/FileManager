@@ -39,7 +39,9 @@ public class CreateServlet extends HttpServlet {
         String folder = request.getParameter("folderName");
         Storage storage = new Storage(userPath + File.separator + currentPath);
         storage.createDirectory(folder);
-        List<FileBean> lst = storage.getFileBean();
+        //List<FileBean> lst = storage.getFileBean();
+        List<FileBean> lst = (List<FileBean>) session.getAttribute("lst");
+        lst = storage.getFileBean();
         session.setAttribute("lst",lst);
         JSONObject result = new JSONObject();
         result.append("lst", lst);

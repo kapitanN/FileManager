@@ -13,21 +13,25 @@
 	<script type="text/javascript" src="js/signupvalidation.js"></script>
 </head>
 <body>
-<form action="registration" method="post" id="registrationform">
-	<p class="title">Name</p>
-	<input type = "text" name = "firstName">
-	<p class="title">Last name</p>
-	<input type = "text" name = "lastName">
-	<p class="title">Login</p>
-	<input type = "text" name = "login">
-	<p class="title">Password</p>
-	<input type = "password" name = "password">
-	<p></p>
-	<button class = "button">Sign up</button>
-</form>
+<div  class="registration">
+	<form action="registration" method="post" id="registrationform">
+		<p class="title">Name</p>
+		<input type="text" name="firstName">
+		<p class="title">Last name</p>
+		<input type="text" name="lastName">
+		<p class="title">Login</p>
+		<input type="text" name="login">
+		<p class="title">Password</p>
+		<input type="password" name="password">
+		<p></p>
+		<button class="button">Sign up</button>
+	</form>
+</div>
 <br>
-<form>
-	<a href="AuthenticationForm.jsp" class = "button">Log In</a>
-</form>
+<div class="registration">
+	<form>
+		<a href="AuthenticationForm.jsp" class="button">Log In</a>
+	</form>
+</div>
 </body>
 </html>

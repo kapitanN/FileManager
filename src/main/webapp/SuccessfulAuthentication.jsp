@@ -36,7 +36,7 @@
 		<div style=" width:100%; height:1px; clear:both;"></div>
 	</div>
 	<div id="sidebar">
-		<form id="file_upload" action="/UploadServlet" method="post" enctype="multipart/form-data">
+		<form id="file_upload" action="/UploadServlet" method="post" enctype="multipart/form-data" >
 			<input id="data" name="data" type="file" value="Select file" style="width: 100%"><br>
 			<input type="submit" value="Upload" onclick="setCurrPath('${currentPath}')"><br>
 		</form>
@@ -55,7 +55,7 @@
 					<div class="col-md-3 col-xs-10 file-block" onclick="redirect('${currentPath}','${file.name}')">
 						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
 						<h3 class="folder-name">${file.name}</h3>
-						<div class="remove-action">
+						<div style="display: none" class="remove-action" id="remove">
 							<span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true" /></div>
 					</div>
 				</form>
@@ -65,8 +65,8 @@
 					<div class="col-md-3 col-xs-10 file-block ">
 						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 						<h3 class="folder-name">${file.name}</h3>
-						<div class="remove-action">
-							<span class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true"/></div>
+						<div style =" display: none" class="remove-action">
+							<span onclick="func(${file.name})" class="glyphicon glyphicon-remove vocabulary-button-text" aria-hidden="true"/></div>
 					</div>
 				</form>
 			</c:if>

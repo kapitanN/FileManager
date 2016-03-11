@@ -10,7 +10,7 @@
 </head>
 <body>
 <form action = "${toServlet}" method = "post">
-	<p style="color: gold">Please,sign up.</p>
+	<p style="color: gold; font-size: 1.5em;">Please,sign up or enter login and password again.</p>
 </form>
 <a href="RegistrationForm.jsp" class = "button">Sign up</a>
 <a href="AuthenticationForm.jsp" class = "button">Log In</a>

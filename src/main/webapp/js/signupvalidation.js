@@ -7,10 +7,10 @@ $(document).ready(function(){
         rules: {
             firstName:{
                 required: true,
-                pattern: '^[a-zA-Zа-яА-Я]*$'
+                //pattern: '^[a-zA-Zа-яА-Я]*$'
             },
             lastName:{
-                pattern: '^[a-zA-Zа-яА-Я]*$',
+                //pattern: '^[a-zA-Zа-яА-Я]*$',
                 required: true,
 
             },
@@ -24,19 +24,19 @@ $(document).ready(function(){
         },
         messages:{
             firstName:{
-                pattern: "Никаких цифр в имени!",
-                required: "Поле обязательно для заполения.",
+                pattern: "Must be only letters.",
+                required: "Field must be filled.",
             },
             lastName:{
-                pattern: "Никаких цифр в фамилии!",
-                required: "Поле обязательно для заполнения.",
+                pattern: "Must be only letters.",
+                required: "Field must be filled.",
             },
             login:{
-                required: "Поле обязательно для заполения.",
+                required: "Field must be filled.",
             },
             password:{
-                required: "Поле обязательно для заполнения.",
-                minlength: "Пароль должен быть больше пяти символов.",
+                required: "Field must be filled.",
+                minlength: "Password must be more than 5 characters.",
             },
         }
     });

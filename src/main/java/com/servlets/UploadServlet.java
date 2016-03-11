@@ -1,5 +1,7 @@
 package com.servlets;
 
+import com.beans.FileBean;
+import com.storage.Storage;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Nikita on 06.03.2016.
@@ -53,6 +56,12 @@ public class UploadServlet extends HttpServlet {
             }
         response.setContentType("text/html");
         response.getWriter().write(generateFileElement(fileName, savePath));
+        String userFolder = (String) session.getAttribute("userPath"); // d
+        String clientPath = request.getParameter("path"); // 666
+        session.setAttribute("currentPath", clientPath + "/");
+        Storage s = new Storage(userFolder + File.separator + clientPath);
+        List<FileBean> lst = s.getFileBean();
+        session.setAttribute("lst", lst);
 
         request.getRequestDispatcher("SuccessfulAuthentication.jsp").forward(request, response);
 
